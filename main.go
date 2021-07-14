@@ -58,7 +58,7 @@ func main() {
 		msg := tg.NewMessage(update.Message.Chat.ID, update.Message.Text)
 		persons, err := parseInput(msg.Text)
 		if err != nil {
-			msg.Text = err.Error()
+			msg.Text = fmt.Sprintf("Somethin went wrong: %s\n\nUse the following format:\nAlice 700, Bob 0, Carol 200\n\nSample output:\nBob => Alice 300\nCarol => Alice 100", err.Error())
 			api.Send(msg)
 			continue
 		}
